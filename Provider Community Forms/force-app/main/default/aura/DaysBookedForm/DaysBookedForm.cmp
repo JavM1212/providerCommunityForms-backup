@@ -1,0 +1,127 @@
+<aura:component
+    controller="createInvoiceDataIntegrity"
+    implements="force:appHostable,force:hasSObjectName,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global"
+>
+    <aura:attribute
+        name="PageHeading"
+        type="String"
+        default="Generate Days Booked Form"
+    />
+    <aura:attribute name="showInvoice" type="Boolean" default="false" />
+    <aura:attribute name="generateInvoice" type="Boolean" default="true" />
+    <aura:attribute name="domain" type="string" default="default" />
+    <aura:attribute name="url" type="string" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="startDate" type="Date" default="false" />
+    <aura:attribute name="endDate" type="Date" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <!--aura:handler event="force:refreshView" action="{!c.init}"  /-->
+
+    <aura:if isTrue="{!v.showInvoice}">
+        <aura:if isTrue="{!v.generateInvoice}">
+            <div
+                class="slds-m-top_small slds-m-bottom_medium slds-align_absolute-center"
+            >
+                <lightning:button
+                    variant="brand"
+                    label="Back"
+                    title="Neutral action"
+                    onclick="{! c.backAction }"
+                />
+
+                <!-- Neutral variant (default) -->
+                <lightning:button
+                    variant="brand"
+                    label="SendEmail"
+                    title="Neutral action"
+                    onclick="{!c.sendAttachmentController}"
+                />
+                <!-- Neutral variant (default) -->
+                <lightning:button
+                    variant="brand"
+                    label="Save"
+                    title="Neutral action"
+                    onclick="{! c.savePdfController }"
+                />
+            </div>
+            <!--{! v.url + v.selectedIdString  }-->
+            <iframe
+                src="{! v.url}"
+                width="100%"
+                height="700px;"
+                frameborder="0"
+            />
+            <aura:set attribute="else">
+                <div
+                    class="slds-m-top_small slds-m-bottom_medium slds-align_absolute-center"
+                >
+                    <lightning:button
+                        variant="brand"
+                        label="Back"
+                        title="Neutral action"
+                        onclick="{! c.backAction }"
+                    />
+                </div>
+                <div class="slds-m-top--xx-large">
+                    <div class="slds-page-header">
+                        <div class="slds-align--absolute-center">
+                            <div
+                                class="slds-text-heading--large"
+                                style="color: red"
+                            >
+                                Billing Contact Information Must Match for
+                                Orders that are being Combined
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aura:set>
+        </aura:if>
+        <aura:set attribute="else">
+            <div class="slds-m-top--xx-large">
+                <div class="slds-page-header">
+                    <div class="slds-align--absolute-center">
+                        <div class="slds-text-heading--large">
+                            {!v.PageHeading}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /> <br />
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning:input
+                        type="date"
+                        name="input1"
+                        label="Start Date"
+                        value="{!v.startDate}"
+                        placeholder="select date"
+                        onchange="{!c.dateChecker}"
+                    />
+                </div>
+                <div class="slds-col">
+                    <lightning:input
+                        type="date"
+                        name="input1"
+                        label="End Date"
+                        value="{!v.endDate}"
+                        placeholder="select date"
+                        onchange="{!c.dateChecker}"
+                    />
+                </div>
+            </div>
+
+            <br />
+            <div class="slds-grid slds-grid--align-center">
+                <lightning:button
+                    variant="brand"
+                    label="Generate Days Booked Form"
+                    disabled="{!v.generateInvoice}"
+                    onclick="{!c.generateInvoice}"
+                />
+            </div>
+        </aura:set>
+    </aura:if>
+</aura:component>

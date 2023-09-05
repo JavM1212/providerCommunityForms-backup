@@ -1,0 +1,824 @@
+<template>
+    <div>
+        <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-5">
+            <span><strong>Required Forms</strong></span>
+            <span aria-hidden="true">
+                <strong>{progressBarValueRounded}% Complete</strong>
+            </span>
+        </div>
+    </div>
+    <!-- <lightning-progress-bar class="custom-progress-bar slds-progress-bar__value slds-progress-bar__value_success" value={progressBarValue} size="large" variant="circular"></lightning-progress-bar> -->
+    <div class="slds-progress-bar" style="border-radius: 5px;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" role="progressbar">
+        <span data-my-id="fillProgressBarColor" class="slds-progress-bar__value" style="width: 50%; background:#F35424; border-radius: 5px">
+          <span class="slds-assistive-text">Progress: 75%</span>
+        </span>
+      </div>
+    <br/>
+    <template if:true={contactRecord}>
+        <!-- ReleaseAndAuthorization FORM -->
+        <template if:true={showReleaseAndAuthorizationForm}>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button label="X" variant="brand" style="position: absolute; top: 5px; right: 0px; border: none; font-size: 20px; cursor: pointer; padding: 5px 10px; color: #fff;" onclick={handleReleaseAndAuthorizationClose}></lightning-button>
+
+                    <form class="slds-modal__content slds-p-around_medium" style="max-height: 90vh" onsubmit={handleReleaseAndAuthorizationSubmit}>     
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Release And Authorization</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <lightning-input required label="Last Name" value={RAALastName} onchange={handleRAALastNameChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <lightning-input required label="First Name" value={RAAFirstName} onchange={handleRAAFirstNameChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <lightning-input required label="Middle Name" value={RAAMiddleName} onchange={handleRAAMiddleNameChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <lightning-input required label="Previous Surname" value={RAAPreviousSurname} onchange={handleRAAPreviousSurnameChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <lightning-input required label="Suffix" value={RAASuffix} onchange={handleRAASuffixChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <p>By my signature below, I authorize Integrity Healthcare Locums, LLC ("IHL") to conduct background and reference checks on me regarding any information related to possible placement in permanent or locum tenens positions as a physician or other healthcare provider. This includes information on my education, licensing, work history, Medicare/Medicaid sanctions, malpractice claims, insurance eligibility, and criminal history. </p><br/>
+                            <p>IHL may gather the information from various sources including, but not limited to, consumer reporting agencies, hospitals, medical institutions or organizations, personal references, physicians, employers (past and present)business and professional associates (past and present), governmental agencies and instrumentalities (local,state, federal, or foreign), the National Practitioners Database, university transcript offices, medical schools, the Office of Inspector General and the Federation of State Medical Boards ("FSMB"). I authorize IHL to confirm information contained in any document that I provide to IHL, including my curriculum vitae. I give consent to IHL to share this information with IHL clients and affiliates when it is reasonable to do so. I understand that, upon my request, IHL will disclose the nature and scope of information contained in my file in accordance with federal, state, and local law. A request for disclosure of information in my file must be made in writing and directed to IHL's management team. </p><br/>
+                            <p>I hereby forever waive and release IHL, its officers, employees, agents and third parties which provide or receive Information regarding my credentials included but not limited to the FSMB and those sources listed above, from any claims, causes of action, damages and expenses, including reasonable attorney's fees arising from or related to the collection, verification, and dissemination of information about me</p><br/>
+                            <p>I further authorize IHL, its agents and affiliates to release this information, including medical information, to (I) federal, state, county or local government entities, (II) hospital or other healthcare facilities, (Ill) insurance providers, or (IV), any other person showing that the release of the information is vital to the general public's health safety and welfare.</p><br/>
+                            <p>I understand that I have the burden of providing accurate and adequate information to IHL to demonstrate my qualifications. I understand that any misstatement in this form may constitute grounds for denial of referral to practice opportunities, grounds for termination of medical malpractice coverage, or cancelation of contract. If any material changes occur affecting my professional status, it is my obligation to inform IHL immediately. I understand that any information received from references by IHL, including but not limited to quality evaluations, is confidential and may not be released to me without the consent of the reference.</p><br/>
+                            <p>I make this release for the purpose of allowing IHL to assist in my request for a license to practice medicine and to assist in my efforts to work as a permanent or locum tenens healthcare provider.</p>
+                            <br/>
+                            <lightning-input required label="Print Name" value={RAAPrintName} onchange={handleRAAPrintNameChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <lightning-input required label="Signature" value={RAASignature} onchange={handleRAASignatureChange} style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; background-color: #F2F2F2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;">
+                                <label for="dateId1" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date</label>
+                                <input id="dateId1" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333; border-radius: 5px; border: transparent; padding: 5px" type="date" required value={RAADate} onchange={handleRAADateChange}></input>
+                            </div>
+                        </div>
+                        <footer>
+                            <lightning-button label="Submit" variant="brand" type="submit"></lightning-button>
+                            <lightning-button label="Cancel" variant="neutral" onclick={handleReleaseAndAuthorizationClose}></lightning-button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+        </template>
+        <!--  -->
+
+        <!-- ProfLiabSuppClaimsMultiForm FORM -->
+
+        <template if:true={showProfLiabSuppClaimsMultiForm}>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button label="X" variant="brand" style="position: absolute; top: 5px; right: 0px; border: none; font-size: 20px; cursor: pointer; padding: 5px 10px; color: #fff;" onclick={handleProfLiabSuppClaimsMultiFormClose}></lightning-button>
+
+                    <form class="slds-modal__content slds-p-around_medium" style="max-height: 90vh" onsubmit={handleProfLiabSuppClaimsMultiFormSubmit}>     
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Professional Liability Supplemental Claims Multi Form</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="First Name" value={PLSCFirstName} onchange={handlePLSCFirstNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Last Name" value={PLSCLastName} onchange={handlePLSCLastNameChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId2" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Today's Date</label>
+                                <input id="dateId2" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PLSCTodaysDate} onchange={handlePLSCTodaysDateChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Please mark Yes if you have or have had a liability claim against you. Mark N/A if you have had no liability claim against
+                            you" options={yesNoOpts} value={PLSCYesOrNa} onchange={handlePLSCYesOrNaChange}></lightning-combobox>
+                            <br if:true={showHowManyInput}/>
+                            <lightning-input type="number" style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required={showHowManyInput} if:true={showHowManyInput} label="If yes, how many" value={PLSCHowMany} onchange={handlePLSCHowManyChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Check the following box, I acknowledge that I am to provide accurate information and fill out this entire form to the best of my knowledge Please provide the following information regarding any incident, claim or suit
+                            brought against you whether it was dismissed, settled out of court, or a judgement is pending. Answer all questions accurately and completely. Please complete this form for any incident, claim or suit
+                            brought against you. Failure to accurately document or disclose any incident, claim or suit brought against you may result in immediate removal from an assignment and termination of privileges.
+                            " value={PLSCiAcknowledge} type="checkbox" onchange={handlePLSCiAcknowledgeChange}></lightning-input>
+                            <br/>
+                            <p style="font-size: 18px"><b>Identifying information</b></p>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Application (Defendant's) Name" value={PLSCAppDefName} onchange={handlePLSCAppDefNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Claimant (Plaintiff's) Name" value={PLSCClaimPlaintName} onchange={handlePLSCClaimPlaintNameChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId3" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date of alleged error</label>
+                                <input id="dateId3" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PLSCDateError} onchange={handlePLSCDateErrorChange}></input>
+                            </div>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId4" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date of claim</label>
+                                <input id="dateId4" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PLSCDateClaim} onchange={handlePLSCDateClaimChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Please indicate whether a" options={judgementType} value={PLSCIndicateWhetherA} onchange={handlePLSCIndicateWhetherAChange}></lightning-combobox>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Name of insurance carrier and policy #" value={PLSCNameInsuAndPolicy} onchange={handlePLSCNameInsuAndPolicyChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Agent's Name" value={PLSCAgentsName} onchange={handlePLSCAgentsNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input type="tel" style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required label="Telephone Number (xxx-xxx-xxxx)" value={PLSCTelephoneNumber} onchange={handlePLSCTelephoneNumberChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Location of court or jurisdiction where complaint was filed" value={PLSCLocation} onchange={handlePLSCLocationChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Case Number" value={PLSCCaseNumber} onchange={handlePLSCCaseNumberChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Defendent's Legal Representation Name" value={PLSCDefLegRepName} onchange={handlePLSCDefLegRepNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input type="tel" style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required label="Telephone Number (xxx-xxx-xxxx)" value={PLSCTelephoneNumber2} onchange={handlePLSCTelephoneNumber2Change}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Address" value={PLSCAddress} onchange={handlePLSCAddressChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="City" value={PLSCCity} onchange={handlePLSCCityChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="State" value={PLSCState} onchange={handlePLSCStateChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" pattern="[0-9]{5}" required label="Zip Code" value={PLSCZipCode} onchange={handlePLSCZipCodeChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Plaintiff's Legal Representation Name" value={PLSCPlainLegRepName} onchange={handlePLSCPlainLegRepNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input type="tel" style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required label="Telephone Number (xxx-xxx-xxxx)" value={PLSCTelephoneNumber3} onchange={handlePLSCTelephoneNumber3Change}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Address" value={PLSCAddress2} onchange={handlePLSCAddress2Change}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="City" value={PLSCCity2} onchange={handlePLSCCity2Change}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="State" value={PLSCState2} onchange={handlePLSCState2Change}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" pattern="[0-9]{5}" required label="Zip Code" value={PLSCZipCode2} onchange={handlePLSCZipCode2Change}></lightning-input>
+                            <br />
+                            <p style="font-size: 18px"><b>Status of Complaint</b></p>
+                            <br/>
+                            <p>If closed, please indicate</p>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" label="Court Judgement" type="checkbox" value={PLSCCourtJudgement} onchange={handlePLSCCourtJudgementChange}></lightning-input>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required options={judgementFor} label="Judgement For" value={PLSCJudgementFor} onchange={handlePLSCJudgementForChange}></lightning-combobox>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="By" options={by} value={PLSCBy} onchange={handlePLSCByChange}></lightning-combobox>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId5" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date</label>
+                                <input id="dateId5" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PLSCDate} onchange={handlePLSCDateChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" label="Out-of-court Settlement" type="checkbox" value={PLSCOutCourtSettle} onchange={handlePLSCOutCourtSettleChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId6" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date of Settlement</label>
+                                <input id="dateId6" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PLSCDateSettle} onchange={handlePLSCDateSettleChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" type="number" required label="Amount paid on Defendant's Behalf $" value={PLSCAmountPaidDefBehalf} onchange={handlePLSCAmountPaidDefBehalfChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" type="number" required label="Compensation $" value={PLSCCompensation} onchange={handlePLSCCompensationChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" type="number" required label="Punitive Damages Awarded $" value={PLSCPunitDamagAwarded} onchange={handlePLSCPunitDamagAwardedChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" type="number" required label="Total Compensation $" value={PLSCTotalCompensation} onchange={handlePLSCTotalCompensationChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" label="Claim/Case Dismissed" type="checkbox" value={PLSCClaimCaseDismised} onchange={handlePLSCClaimCaseDismisedChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" label="Against Defendant" type="checkbox" value={PLSCAgainstDefendant} onchange={handlePLSCAgainstDefendantChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" label="Against All Defendants" type="checkbox" value={PLSCAgainstAllDefendants} onchange={handlePLSCAgainstAllDefendantsChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId7" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date</label>
+                                <input id="dateId7" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PLSCDate2} onchange={handlePLSCDate2Change}></input>
+                            </div>
+                            <br/>
+                            <p>Please provide a chronological order of events including: location of incident, the alleged act, error or omission upon which the claim was made , injury or condition sustained, etc ...</p>
+                            <br/>
+                            <p style="font-size: 18px"><b>Description of Claim</b></p>
+                            <br />
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Description" value={PLSCDescription} onchange={handlePLSCDescriptionChange}></lightning-input>
+                            <br/>
+                            
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Provider Initials" value={PLSCProviderInitials} onchange={handlePLSCProviderInitialsChange}></lightning-input>      
+                            
+                        </div>
+                        <footer>
+                            <lightning-button label="Submit" variant="brand" type="submit"></lightning-button>
+                            <lightning-button label="Cancel" variant="neutral" onclick={handleProfLiabSuppClaimsMultiFormClose}></lightning-button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+        </template>
+        <!--  -->
+
+        <!-- ProviderServicesAgreement FORM -->
+        <template if:true={showProviderServicesAgreementForm}>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true" aria-describedby="modal-content-id-3" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button label="X" variant="brand" style="position: absolute; top: 5px; right: 0px; border: none; font-size: 20px; cursor: pointer; padding: 5px 10px; color: #fff;" onclick={handleProviderServicesAgreementClose}></lightning-button>
+
+                    <form class="slds-modal__content slds-p-around_medium" style="max-height: 90vh" onsubmit={handleProviderServicesAgreementSubmit}>
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate">Independent Healthcare Provider Services Agreement</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId8" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Effective Date</label>    
+                                <input id="dateId8" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333"  type="date" required value={PSAEffectiveDate} onchange={handlePSAEffectiveDateChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"   required label="Contractor" value={PSAContractor} onchange={handlePSAContractorChange}></lightning-input>
+                            <br/>
+                            <p style="text-align: justify;">
+                                <b>(“Contractor”)</b>, a licensed physician or healthcare professional, and INTEGRITY HEALTHCARE LOCUMS, LLC, d/b/a INTEGRITY LOCUMS, a Delaware limited liability company <b>(“Integrity”). WHEREAS</b>, Integrity is a locum tenens professional staffing company that arranges temporary placement of licensed physicians and healthcare professionals with hospitals and other medical facilities <b>(“Clients”)</b>; and <b>WHEREAS</b>, Contractor desires to have Integrity arrange his/her such temporary placement(s) with Clients under the terms and provisions set forth herein (the<b> “Assignment”</b>).<b> NOW, THEREFORE</b>, in consideration of the mutual promises and covenants set forth in this Agreement, and other good and valuable consideration, the receipt and adequacy of which are hereby acknowledged, Contractor and Integrity agree as follows: 
+                            </p>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold;">
+                                    <p style="margin: 0px;">
+                                        1. PROCEDURE
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. Contractor shall provide Integrity with current copies of his or her curriculum vitae, all state licenses and certifications and credentialing, and at least three (3) written references that speak to his or her qualifications and clinical skill. Thereafter, Contractor shall provide any other information pertinent to this Agreement or to a specific Assignment requested by a Client or Integrity.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. Contractor hereby consents to the performance of a drug screening and criminal background check and agrees that the results thereof may be shared with the Client.</p>
+                                    </div>
+                                </div>
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px;   margin-bottom: 5px;">2. Integrity shall present Contractor’s curriculum vitae and other pertinent information to appropriate Clients and, upon receiving written notice that Con- tractor is acceptable to a Client, shall so advise Contractor. Contractor shall confirm availability and provide verbal consent to Integrity. Contractor retains the right to decline placements offered, but verbal acceptance shall be binding upon Contractor.</p>
+                                    </div>
+                                </div>
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px;   margin-bottom: 5px;">3. Once Contractor’s verbal acceptance is received, Contractor will receive a Candidate Confirmation Letter (“Confirmation”) setting forth the dates and location of the Assignment, name of the Client, hourly rate of pay, the work schedule and other relevant information relating to the Assignment.</p>
+                                    </div>
+                                </div>
+                                <div style="font-weight: bold;">
+                                    <p style="margin: 0px;">
+                                        4. RELATIONSHIP OF THE PARTIES
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. <b>Independent Contractor</b>. The relationship created by this Agreement is that of independent contractor. Neither party shall act as a partner, agent, representative or employee of, or in joint venture with, the other, and, except as specifically authorized by this Agreement, neither shall have the authority to bind the other contractually or otherwise.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. <b>Control over Method of Providing Services</b>. The parties acknowledge that Integrity will not participate in any manner in matters relating to Contractor’s patient care or the provision of his/her professional medical services and will not exercise any control of any nature over the means or manner by which Contractor provides services or reaches medical decisions, which decisions and provisions of care shall be made and provided solely and exclusively by Contractor and Client. Contractor shall exercise independent judgement and control over the provision of services.</p>
+                                    </div>
+                                </div>
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal;">
+                                        <b>5. SERVICES:</b> The services of Contractor under this Agreement shall include:	
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. The provision of competent medical services in accordance with Contractor’s professional training and the application of his/her particular skill and knowledge, to Client(s) at Client(s)’ facilities as may be agreed upon and set forth in the Confirmation with respect to the particular Assignment, according to the standards of practice among members of the same health care profession in which Contractor is to perform services.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. Cooperate with reasonable Client requests in order to assure continuity of care and other medical protocols.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. Maintain appropriate records in accordance with the standards set forth by the Client, and fulfill all charting requirements within the required time, including all dictation, progress notes, histories, physicals, and other chart documentation relating to clinical care. Failure to complete and deliver records or timely chart as set forth herein shall be a material breach of this Agreement and Contractor expressly agrees and understands that time is of the essence with respect to these obligations. Contractor agrees that payments otherwise owed to Contractor hereunder may be withheld pending successful completion of these tasks. Contractor further acknowledges that if these tasks are not completed within a reasonable time, or if requested corrections are not made within a reasonable time, Contractor’s privileges may be terminated or revoked, which action could have significant impact on Contractor’s future credentialing and job opportunities.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">d. Complying with all Client billing requirements.</p>                	
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">e. Immediately notify Integrity in writing of any malpractice claim made, any issue or incident which has the potential to lead to a malpractice claim or a disciplinary action against the Contractor, or any other incident, claim or lawsuit or potential claim or lawsuit involving or potentially involving Con- trac or, irrespective of whether related to work performed pursuant to an Assignment hereunder or related to services or work otherwise performed by Contractor at anytime and anywhere.</p>                	
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">f. To otherwise abide by the terms and provisions of this Agreement and the Confirmation.</p>                	
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">g. To comply at all times with the Health Insurance Portability Act of 1996 (“HIPPA”) and any and all other applicable State and Federal Laws and Regulations.</p>                	
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal; ">
+                                        <b>6. REPRESENTATIONS OF CONTRACTOR</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. Contractor represents and warrants that his or her license(s) are current, active and in good standing. It is the Contractor’s obligation to maintain his or her license(s) and credentials in good standing throughout the duration of each Assignment. If at any time during an Assignment, Contractor’s license or credentialing is suspended, limited or revoked, Contractor shall immediately notify Integrity in writing of such occurrence.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. Contractor represents and warrants that the contents of his or her curriculum vitae and other personal information provided to Integrity are true and correct.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. Contractors represents and warrants that he or she is capable, competent, and qualified to provide services to be provided to a Client in an accept- ed Assignment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal; ">
+                                        <b>7. PAYMENT</b>
+                                    </p>
+                                    <p style="margin: 0px; font-weight: normal; font-size: 11px">
+                                        Integrity will pay Contractor for each week of the Assignment (the “Cycle”) in accordance with the hourly rate set forth in the Confirmation, conditioned upon the following:
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. With respect to regular time, Integrity must receive expense and time sheets signed by Contractor and approved by Client by the close of business on the Friday of the Cycle, and payment will be made for that Cycle on the next following Friday.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. With respect to overtime, it is understood that approval by the Client may have a longer turnaround time, and Contractor will be paid for such over- time on the Friday following the Friday of the week that the Client approval is received by Integrity.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. Should the Client cancel the Assignment within thirty (30) days in advance of the date on which the Assignment is to start, Contractor will not be entitled to any payments or other compensation hereunder.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">d. Given that Contractor is an independent contractor, Integrity does not pay or provide for social security, workers’ compensation, unemployment insurance or health insurance.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">e. An IRS Form 1099 will be issued to Contractor for income tax reporting purposes. Contractor shall be responsible for the payment of income tax, social security, Medicare, self-employment tax, and all other federal, state, and local taxes due with respect to the compensation paid to Contractor hereunder. If, despite the fact that Contractor is an independent contractor, state or local law imposes withholding obligations on the payer, the par- ties will cooperate to ensure compliance with such laws.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">f. For States Requiring Withholding: Certain States, including but not limited to California, require the withholding of State income tax at a certain stated percentage of all compensation paid to nonresident independent contractors performing services in that State. The tax withholding and gross compensation paid on the assignments in a State requiring withholding will be reported in accordance with that State’s reporting requirements to the Contractor and to the State.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">g. Contractor shall not collect any fees or other payments from patients. Client is entitled to all such fees generated as a result of Contractor’s ser- vices. Contractor agrees to promptly cooperate with reasonable Client requests to facilitate payment to Client of such fees, and to provide reasonable documentation required by Client to effectuate assignment of billing rights.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">h. Integrity may, in its sole discretion, at any time and from time to time, set off and withhold from any amounts otherwise payable to Contractor pursuant to this Agreement any amounts withheld by Client due to dissatisfaction with Contractor or other reasons related solely to the Contractor and/ or his or her performance, or as necessary to satisfy all or any portion of any outstanding obligations of Contractor to Integrity or to Client. Contractor understands and agrees that, should this occur, Contractor shall not have a claim against Integrity for its portion of the unpaid amounts.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">i. Should the arrangement between Client and Integrity provide for Client to pay Contractor directly, such agreement shall be set forth in the Confirmation and shall supersede the provisions herein. Such arrangement requires the written agreement of Integrity.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal; ">
+                                        <b>8. HOUSING AND TRAVEL</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. Unless otherwise provided in the Confirmation, Integrity will provide, at cost, either by reimbursement to Contractor or direct payment or as other- wise made by arrangement with Client, the following to Contractor: (a) round trip transportation to the Assignment; (b) local transportation within the community where the Assignment is located, including reasonable gas charges; and (c) reasonable housing accommodations, which contemplates standard amenities and utilities. Contractor is responsible for all other personal expenses including telephone service, laundry and dry cleaning, meals and any other charges not agreed upon herein or in the Confirmation.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b.Contractor agrees that his or her right to occupy housing provided hereunder is limited to the duration of an Assignment and agrees to promptly vacate such housing upon the conclusion or the termination of the Assignment.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. Reimbursement requests shall be submitted with backup receipts, bills, or invoices within thirty (30) days of the expense being incurred.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal; ">
+                                        <b>9. PROFESSIONAL LIABILITY INSURANCE</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. Unless otherwise agreed as set forth below, Integrity shall facilitate professional liability insurance coverage for the Assignment(s) to Contractor in the amount of $1,000,000 per claim with a $3,000,000 annual aggregate, unless higher or lower limits are required by applicable state or local law for claims of medical malpractice that may occur as a result of Contractor’s provision of services hereunder. The coverage will apply for each Assignment regardless of when a claim is made and will include an Extended Reporting Endorsement (“tail coverage”) in the event of any lapse of cancellation of the policy. This coverage applies only to agreed-upon services provided during this Agreement and is subject to policy conditions.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. Integrity’s obligation to facilitate professional liability insurance is conditioned upon Contractor providing complete and accurate information relating to licensing, credentials, capabilities, and other material information. If Integrity discovers any misrepresentations or omissions of material information by Contractor, Integrity shall have no obligation to provide coverage to Contractor.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. Contractor agrees to fully cooperate in the defense of any malpractice action.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">d.Should the Client wish to cover the Contractor under its professional liability insurance policy, that policy will be the primary, non-contributory policy and must include a waiver of subrogation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal;">
+                                        <b>10. INDEMNIFICATION</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">Contractor is responsible for his or her own medical decisions and actions and hereby indemnifies Integrity, and holds it harmless, from any losses, damages, liabilities and expenses not covered by the professional liability insurance that are incurred due to, arising out of, or in connection with, the Contractor rendering or failing to render medical services during the term of this Agreement, including claims that Integrity’s negligence in whole or in part caused the loss.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal; ">
+                                        <b>11. NON-COMPETITION</b>
+                                    </p>
+                                    <p style="margin: 0px; font-weight: normal; font-size: 11px">
+                                        Contractor agrees that Integrity has provided a valuable service in locating and introducing Clients to Contractor and that it has legitimate business interests related thereto. Contractor agrees that during the term of this Agreement, and for a period of two (2) years thereafter, he or she:                </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. will not provide locum tenens or other temporary services to Clients for whom Contractor performed services at the same worksite facility, or to Clients to which he or she was introduced to perform services at that worksite facility by Integrity, unless such locum tenens services are furnished through Integrity or Integrity agrees in writing.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. will not accept any permanent position with a Client for whom Contractor performed services hereunder at the same worksite facility, unless Integrity agrees in writing thereto.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. It shall be a condition prerequisite to obtaining the agreement of Integrity as set forth in (a) or (b) above, that either Client or Contractor pays Integrity the required placement fee as set forth in the agreement between Client and Integrity.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">d. Contractor agrees to immediately advise Integrity upon the offer of a locum tenens, temporary or permanent position with a Client for whom Con-  tractor performed services under this Agreement.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal; ">
+                                        <b>12. CONFIDENTIAL INFORMATION</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">Contractor shall not, either during the term of this Agreement or thereafter, disclose or deliver to anyone, or use in any way other than in Integrity’s business, any confidential information or material relating to Integrity’s business. In this context, confidential information is information and knowledge which is not available to the general public and includes but is not limited to Integrity’s Clients list and Client contacts and other client related and billing related information.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal;">
+                                        <b>13. TERMINATION OF AGREEMENT</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px; ">a. Integrity may terminate this Agreement, or any Assignment, at any time without notice or liability for the following reasons:</p>
+                                        <div class="input-container" style="text-align: left; font-weight: normal; font-size: 11px">
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">i. Contractor’s breach of any duties or obligations under this Agreement or the Confirmation which cannot be cured or, if curable, which is not cured within five (5) days of the delivery of a notice of breach by Integrity.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">ii. The denial, revocation, suspension, or surrender of Contractor’s license or his or her privileges at any involved healthcare facility.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">iii. Failure to complete the Integrity application process and provide all required documentation.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">iv. Upon discovery that Contractor is not insurable under Integrity’s professional liability insurance policy and/or does not otherwise meet Integrity’s application standards.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">v. Upon discovery that Contractor has provided incomplete or inaccurate information to Integrity.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">vi. Any negative material changes in information relating to Contractor’s fitness for the position or otherwise provided to Integrity for purposes of professional liability insurance or capability to perform.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">vii. Any disciplinary actions brought against Contractor by any federal, state or local board or agency related to competence or his or her ability to perform services hereunder.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">viii. Upon a Client’s request for removal of a Contractor for a justified cause, including but not limited to issues relating to professional competence or integrity.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">viii. Upon a Client’s request for removal of a Contractor for a justified cause, including but not limited to issues relating to professional competence or integrity.</p>
+                                        </div>
+                                    </div>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px; ">b. Contractor may terminate this Agreement or any Assignment at any time without notice or liability for the following reasons:</p>
+                                        <div class="input-container" style="text-align: left; font-weight: normal; font-size: 11px">
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">i.Integrity’s failure to pay undisputed compensation or reimbursement owed to Contractor within a reasonable time.</p>
+                                            <p style="margin: 0 1px; margin-left: 40px;  margin-bottom: 5px;">ii.Contractor becoming incapacitated or otherwise physically unable to perform services required beyond reasonable short-term illness, a life- threatening medical condition to Provider or immediate family member. Integrity shall have the right to require written verification of Contractor’s condition from a medical professional.</p>
+                                        </div>
+                                    </div>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px; ">c. Either Integrity or Contractor may terminate this Agreement for any reason by giving written notice thirty (30) days prior to the termination date.</p>
+                                    </div>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px; ">d. If Contractor terminates or cancels an Assignment other than as set forth in (b) and (c) above, Contractor shall be responsible for payment of any nonrefundable expenses and fees incurred by Integrity in connection with the terminated or cancelled Assignment, including but not limited to security deposits, nonrefundable airfare, penalties for early cancellations, as well as any loss of revenue resulting from that cancellation or termination.</p>
+                                    </div>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px; ">e. Upon termination or cancellation, Contractor shall be entitled to payment for services performed through the date of termination or cancellation. Integrity may, however, set off against such amounts any amounts due and owing from Contractor, as set forth in 7(f) and 13(d) above. Integrity shall not be obligated to pay Contractor for any scheduled services not actually performed by Contractor.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal;">
+                                        <b>14.DISPUTE RESOLUTION </b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a. Any dispute or disagreement arising out of or relating to this Agreement or the relationship between Integrity and Contractor shall be resolved by binding arbitration conducted by American Arbitration Association (“AAA”) in Dover, Delaware, under the Commercial Arbitration Rules. The award of the arbitrator may be entered and enforced in any court of competent jurisdiction.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. Other than as set forth above, each party hereby waives any claim for consequential or punitive damages. Damages awarded to Contractor shall not exceed three (3) days of compensation in accord with the hourly rate set forth in the Confirmation of the Assignment at issue.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. The prevailing party in arbitration and/or litigation proceedings hereunder shall be entitled to recovery of its attorneys’ fees and costs incurred therein, including in any appeals.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: bold; font-size: 16px">
+                                    <p style="margin: 0px; font-weight: normal;">
+                                        <b>15.GENERAL PROVISION</b>
+                                    </p>
+                                    <div class="input-container" style="margin-bottom: 5px; text-align: left; font-weight: normal; font-size: 11px">
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">a.Notices. Any notices required to be given under this Agreement shall be in writing and sent to Integrity at the address shown at the end of this Agreement, and to Contractor at the address shown on Contractor’s application with Integrity.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">b. <b>Entire Agreement</b>. This Agreement, together with the Confirmation, constitutes the entire agreement between Integrity and Contractor, and may not be amended, altered, modified or revised except in writing signed by both parties.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">c. <b>Binding Effect</b>. ThisAgreement shall be binding upon the Parties, their heirs, personal representatives, successors and assigns.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">d. <b>Severability</b>. If any provision herein shall be deemed invalid or unenforceable, such determination shall not affect the validity or enforceability of any other provision of this Agreement.</p>
+                                        <p style="margin: 0 1px; margin-left: 20px;  margin-bottom: 5px;">e. <b>Choice of Law</b>. This Agreement shall be construed under and in accordance with the laws of the State of Delaware.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Contractor Initials" value={PSAContractorInitials} onchange={handlePSAContractorInitialsChange}></lightning-input>
+                            <br/>
+                            <p>By signature below, the parties hereto agree to abide by the terms and conditions of this Agreement set forth above. </p>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Contractor Signature" value={PSAContractorSignature} onchange={handlePSAContractorSignatureChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId9" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date</label>
+                                <input id="dateId9" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333"  type="date" required value={PSADate} onchange={handlePSADateChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Printed Name" value={PSAPrintedName} onchange={handlePSAPrintedNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Federal Tax I.D. or Social Security #" value={PSAFederalTaxIdOrSecNumber} onchange={handlePSAFederalTaxIdOrSecNumberChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Integrity Locums Signature" value={PSAIntegritySignature} onchange={handlePSAIntegritySignatureChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId10" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date</label>
+                                <input id="dateId10" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={PSADate2} onchange={handlePSADate2Change}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Printed Name/Title  " value={PSAPrintedNameTitle} onchange={handlePSAPrintedNameTitleChange}></lightning-input>
+                            
+                        </div>
+                        <footer>
+                            <lightning-button label="Submit" variant="brand" type="submit"></lightning-button>
+                            <lightning-button label="Cancel" variant="neutral" onclick={handleProviderServicesAgreementClose}></lightning-button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+        </template>
+        <!--  -->
+
+        <!-- COVIDInternalClinicalScreeningAssessment FORM -->
+        <template if:true={showCOVIDInternalClinicalScreeningAssessmentForm}>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-04" aria-modal="true" aria-describedby="modal-content-id-4" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button label="X" variant="brand" style="position: absolute; top: 5px; right: 0px; border: none; font-size: 20px; cursor: pointer; padding: 5px 10px; color: #fff;" onclick={handleCOVIDInternalClinicalScreeningAssessmentClose}></lightning-button>
+
+                    <form class="slds-modal__content slds-p-around_medium" style="max-height: 90vh" onsubmit={handleCOVIDInternalClinicalScreeningAssessmentSubmit}>
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-04" class="slds-text-heading_medium slds-hyphenate">COVID-19—Internal Clinical Screening Assessment</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Provider Name" value={CICSAProviderName} onchange={handleCICSAProviderNameChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId11" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date of Interview</label>
+                                <input id="dateId11" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date"  required value={CICSADateInterview} onchange={handleCICSADateInterviewChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Locations traveled to within the last 30 days" value={CICSALocations} onchange={handleCICSALocationsChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required label="Current (or recent) provider symptoms" value={CICSACurrentSymptoms} onchange={handleCICSACurrentSymptomsChange}></lightning-input>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  required options={yesNoOpts2} label="Has the provider cared for patients, or been around others in the community, with active Coronavirus?" value={CICSAProviderAroundCorona} onchange={handleCICSAProviderAroundCoronaChange}></lightning-combobox>
+                            <br/>
+                            <p if:true={showCOVIDIfYes}>If yes</p>
+                            <br if:true={showCOVIDIfYes}/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required={showCOVIDIfYes} if:true={showCOVIDIfYes} label="Did they have unprotected contact with other body fluids, including blood, stool, vomit, and urine" value={CICSAIfYes1} onchange={handleCICSAIfYes1Change}></lightning-input>
+                            <br if:true={showCOVIDIfYes}/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required={showCOVIDIfYes} if:true={showCOVIDIfYes} label="The duration of exposure (e.g., longer exposure time likely increases exposure risk)" value={CICSAIfYes2} onchange={handleCICSAIfYes2Change}></lightning-input>
+                            <br if:true={showCOVIDIfYes}/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required={showCOVIDIfYes} if:true={showCOVIDIfYes} label="Clinical symptoms of the patient (e.g., coughing likely increases exposure risk)" value={CICSAIfYes3} onchange={handleCICSAIfYes3Change}></lightning-input>
+                            <br if:true={showCOVIDIfYes}/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required={showCOVIDIfYes} if:true={showCOVIDIfYes} label="Was the patient was wearing a facemask (which can efficiently block respiratory secretions from contaminating others and the environment)" value={CICSAIfYes4} onchange={handleCICSAIfYes4Change}></lightning-input>
+                            <br if:true={showCOVIDIfYes}/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required={showCOVIDIfYes} if:true={showCOVIDIfYes} label="Whether an aerosol generating procedure was performed, and the type of PPE used by HCP" value={CICSAIfYes5} onchange={handleCICSAIfYes5Change}></lightning-input>
+                            <br if:true={showCOVIDIfYes}/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"   required options={travelerRisks} label="Traveler Risk Category (according to WHO Risk Categories on pg. 2)" value={CICSARiskCategory} onchange={handleCICSARiskCategoryChange}></lightning-combobox>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"   required options={recomRestrictions} label="Recommended Work Restrictions" value={CICSAWorkRestrictions} onchange={handleCICSAWorkRestrictionsChange}></lightning-combobox>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s" if:true={showDateInput}>
+                                <label for="dateId12" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333;" if:true={showDateInput}>Return to work elegilibility date</label>
+                                <input id="dateId12" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required={showDateInput} if:true={showDateInput} value={CICSAElegDate} onchange={handleCICSAElegDateChange}></input>
+                            </div>
+                            <br if:true={showDateInput}/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Name of Credentialer" value={CICSANameOfCredentialer} onchange={handleCICSANameOfCredentialerChange}></lightning-input>
+                            <br/>
+                            <p style="font-weight: bold; text-align: left;">
+                                Clinical Guidelines for Placement Eligibility: 
+                            </p>
+                            <table border="1" style="border-collapse: collapse; margin-bottom: 45px">
+                                <tr style="background: #FFF1CC">
+                                    <th>Travel</th>
+                                    <th>Symptomatic</th>
+                                    <th>Contact with other infected or suspected individuals </th>
+                                    <th>Disposition</th>
+                                </tr>
+                                <tr>
+                                    <td>yes</td>
+                                    <td>no</td>
+                                    <td>no</td>
+                                    <td>Eligible for placement</td>
+                                </tr>
+                                <tr>
+                                    <td>yes</td>
+                                    <td>yes</td>
+                                    <td>no</td>
+                                    <td>2 weeks work exclusion for fever (current or within last 14 days) and any other resp symptoms</td>
+                                </tr>
+                                <tr>
+                                    <td>yes</td>
+                                    <td>yes</td>
+                                    <td>yes</td>
+                                    <td>2 weeks work exclusion for fever (current or within last 14 days) and any other resp symptoms</td>
+                                </tr>
+                                <tr>
+                                    <td>yes</td>
+                                    <td>no</td>
+                                    <td>yes</td>
+                                    <td>decision tree based on WHO risk factors</td>
+                                </tr>
+                                <tr>
+                                    <td>no</td>
+                                    <td>yes</td>
+                                    <td>no</td>
+                                    <td>2 weeks work exclusion for fever (current or within last 14 days) and any other resp symptoms</td>
+                                </tr>
+                                <tr>
+                                    <td>no</td>
+                                    <td>no</td>
+                                    <td>yes</td>
+                                    <td>decision tree based on WHO risk factors</td>
+                                </tr>
+                                <tr>
+                                    <td>no</td>
+                                    <td>yes</td>
+                                    <td>yes</td>
+                                    <td>2 weeks work exclusion for fever (current or within last 14 days) and any other resp symptoms</td>
+                                </tr>
+                            </table>
+                            <div style="text-align: left; margin-bottom: 45px">
+                                <p style="font-weight: bold; text-align: left; margin-top: 40px; display: inline">World Health Organization (WHO) Risk Category Definitions (for </p> <p style="display: inline; color: red">ASYMPTOMATIC</p><p style="display: inline; font-weight: bold">HCP)</p> 
+                            </div>
+                            <div class="input-container" style="margin-bottom: 35px; text-align: left;">
+                                <div class="input-elements" style="width: 100%; float: left; padding: 10px">
+                                    <p style="display: inline-block; margin: 0 1px; ">• <u>High-risk exposures</u> refer to HCP who performed or were present in the room for procedures that generate aerosols or during which respiratory secretions are likely to be poorly controlled (e.g., cardiopulmonary resuscitation, intubation, extubation, bronchoscopy, nebulizer therapy, sputum induction) on patients with COVID-19 when the healthcare providers’ eyes, nose, or mouth were not protected.</p>
+                                    <p style="display: inline-block; margin: 0 1px; ">• <u>Medium-risk exposures</u> generally include HCP who had prolonged close contact with patients with COVID-19 where HCP mucous membranes or hands were exposed to material potentially infectious with COVID-19.  These exposures could place the exposed HCP at risk of developing disease that is less than that described under highrisk.</p>
+                                    <p style="display: inline-block; margin: 0 1px; ">• <u>Low risk</u>; Proper adherence to currently recommended infection control practices, including all recommended PPE, should protect HCP having prolonged close contact with patients infected with COVID-19. However, HCP in this category are classified as having low-risk to account for any inconsistencies in use or adherence that could result in unrecognized exposures</p>
+                                    <p style="display: inline-block; margin: 0 1px; ">• <u>No identifiable risk</u> - HCP with no direct patient contact and no entry into active patient management areas who adhere to routine safety precautions are not considered to have a risk of exposure to COVID-19</p>
+                                </div>
+                            </div>
+                            <table border="1" style="border-collapse: collapse;  margin-top: 45px ;background: #F5F5F5">
+                                <tr	>
+                                    <th>Epidemiologic risk factors </th>
+                                    <th>Exposure category </th>
+                                    <th>Recommended Monitoring (until 14 days after last potential exposure)</th>
+                                    <th>Recommended Monitoring (until 14 days after last potential exposure)</th>
+                                </tr>
+                                <tr>
+                                    <td>A. HCP (with unprotected eyes, nose, or mouth) who perform or are present in the room for a procedure likely to generate higher concentrations of respiratory secretions or aerosols (e.g., cardiopulmonary resuscitation, intubation, extubation, bronchoscopy, nebulizer therapy, sputum induction). </td>
+                                    <td>High</td>
+                                    <td>Active</td>
+                                    <td>Exclude from work for 14 days after last exposure </td>
+                                </tr>
+                                <tr>
+                                    <td>B. HCP who perform or are present in the room for a procedure likely to generate higher concentrations of respiratory secretions or aerosols (e.g., cardiopulmonary resuscitation, intubation, extubation, bronchoscopy, nebulizer therapy, sputum induction) and not using a gown and gloves.<hr/>Note: If the HCP’s eyes, nose, or mouth were also unprotected they would fall into the high-risk category above.  </td>
+                                    <td>Medium</td>
+                                    <td>Active</td>
+                                    <td>Exclude from work for 14 days after last exposure</td>
+                                </tr>
+                                <tr>
+                                    <td>C. HCP (with unprotected eyes, nose, or mouth) who have prolonged close contact with a patient who was not wearing a facemask. <hr/>Note: A respirator confers a higher level of protection than a facemask.  However, they are group together in this scenario because (even if a respirator or facemask was worn) the eyes remain uncovered while having prolonged close contact with a patient who was not wearing a facemask. </td>
+                                    <td>Medium</td>
+                                    <td>Active</td>
+                                    <td>Exclude from work for 14 days after last exposure</td>
+                                </tr>
+                                <tr>
+                                    <td>D. HCP (with unprotected eye, nose, and mouth) who have prolonged close contact with a patient who was wearing a facemask. </td>
+                                    <td>Medium</td>
+                                    <td>Active</td>
+                                    <td>Exclude from work for 14 days after last exposure </td>
+                                </tr>
+                                <tr>
+                                    <td>E. HCP (not wearing gloves) who have direct contact with the secretions/excretions of a patient and the HCP failed to perform immediate hand hygiene <hr/>Note: If the HCP performed hand hygiene immediately after contact, this would be considered low risk. </td>
+                                    <td>Medium</td>
+                                    <td>Active</td>
+                                    <td>Exclude from work for 14 days after last exposure</td>
+                                </tr>
+                                <tr>
+                                    <td>F. HCP wearing a facemask or respirator only who have prolonged close contact with a patient who was wearing a facemask <hr/>Note: A respirator confers a higher level of protection than a facemask.  However, they are grouped together in this scenario and classified as low-risk because the patient was wearing a facemask for source control. </td>
+                                    <td>Low</td>
+                                    <td>Self with delegated supervision </td>
+                                    <td>None </td>
+                                </tr>
+                                <tr>
+                                    <td>G. HCP using all recommended PPE (i.e., a respirator, eye protection, gloves and a gown) while caring for or having contact with the secretions/excretions of a patient</td>
+                                    <td>Low</td>
+                                    <td>Self with delegated supervision </td>
+                                    <td>None</td>
+                                </tr>
+                                <tr>
+                                    <td>H. HCP (not using all recommended PPE) who have brief interactions with a or patient regardless of whether patient was wearing a facemask (e.g., brief conversation at a triage desk; briefly entering a patient room but not having direct contact with the patient or their secretions/excretions; entering the patient room immediately after they have been discharged) </td>
+                                    <td>Low</td>
+                                    <td>Self with delegated supervision </td>
+                                    <td>None</td>
+                                </tr>
+                                <tr>
+                                    <td>I. HCP who walk by a patient or who have no direct contact with the patient or their secretions/excretions and no entry into the patient room </td>
+                                    <td>No identifiable risk </td>
+                                    <td>None</td>
+                                    <td>None</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <footer>
+                            <lightning-button label="Submit" variant="brand" type="submit"></lightning-button>
+                            <lightning-button label="Cancel" variant="neutral" onclick={handleCOVIDInternalClinicalScreeningAssessmentClose}></lightning-button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+        </template>
+        <!--  -->
+
+        <!-- CoronavirusScreeningForm FORM -->
+        <template if:true={showCoronavirusScreeningForm}>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-05" aria-modal="true" aria-describedby="modal-content-id-5" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button label="X" variant="brand" style="position: absolute; top: 5px; right: 0px; border: none; font-size: 20px; cursor: pointer; padding: 5px 10px; color: #fff;" onclick={handleCoronavirusScreeningFormClose}></lightning-button>
+
+                    <form class="slds-modal__content slds-p-around_medium" style="max-height: 90vh" onsubmit={handleCoronavirusScreeningFormSubmit}>
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-05" class="slds-text-heading_medium slds-hyphenate">Coronavirus Screening Form</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-5">
+                            <p>In order to comply with current CDC recommendations surrounding COVID-19 exposure in healthcare workers, please answer the following questions:</p>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Last Name" value={CSFLastName} onchange={handleCSFLastNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="First Name" value={CSFFirstName} onchange={handleCSFFirstNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required label="Mobile Number" value={CSFMobileNumber} onchange={handleCSFMobileNumberChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" type="email" required label="Email Address" value={CSFEmailAddress} onchange={handleCSFEmailAddressChange}></lightning-input>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required options={yesNoOpts2} label="Have you traveled internationally within that last 30 days?" value={CSFTraveledInter} onchange={handleCSFTraveledInterChange}></lightning-combobox>
+                            <br/>
+                            <p>Currently, or in the last 30 days, have you experienced any of the following symptoms: </p>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required options={yesNoOpts2} label="Fever" value={CSFFever} onchange={handleCSFFeverChange}></lightning-combobox>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required options={yesNoOpts2} label="Shortness Of Breath" value={CSFShortnessOfBreath} onchange={handleCSFShortnessOfBreathChange}></lightning-combobox>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required options={yesNoOpts2} label="Cough" value={CSFCough} onchange={handleCSFCoughChange}></lightning-combobox>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required options={yesNoOpts2} label="In the last 30 days, have you been in contact with someone who has been diagnosed with COVID-19?" value={CSFContactWithCovid} onchange={handleCSFContactWithCovidChange}></lightning-combobox>
+                            <br />
+                            <p>*If you have answered yes to any of these questions, our credentialing team will follow up with additional questions.</p>
+                            <br />
+                            <p>By typing my first and last name below, I acknowledge that I'm required to notify Integrity Locums if any of my answers to this questionnaire change from No to Yes after initial completion. *</p>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="First and Last Name" value={CSFFirstAndLastName} onchange={handleCSFFirstAndLastNameChange}></lightning-input>
+                        </div>
+                        <footer>
+                            <lightning-button label="Submit" variant="brand" type="submit"></lightning-button>
+                            <lightning-button label="Cancel" variant="neutral" onclick={handleCoronavirusScreeningFormClose}></lightning-button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+        </template>
+        <!--  -->
+
+         <!-- DirectDepositForm FORM -->
+         <template if:true={showDirectDepositForm}>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-06" aria-modal="true" aria-describedby="modal-content-id-6" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button label="X" variant="brand" style="position: absolute; top: 5px; right: 0px; border: none; font-size: 20px; cursor: pointer; padding: 5px 10px; color: #fff;" onclick={handleDirectDepositFormClose}></lightning-button>
+
+                    <form class="slds-modal__content slds-p-around_medium" style="max-height: 90vh" onsubmit={handleDirectDepositFormSubmit}>
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-06" class="slds-text-heading_medium slds-hyphenate">Direct Deposit Authorization Agreement</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-6">
+                            <p style="font-size: 18px"><b>*PLEASE FOLLOW THESE INSTRUCTIONS*</b></p>
+                            <br/>
+                            <p>Use this form to add or cancel a direct deposit. </p>
+                            <br/>
+                            <p>Before applying for direct deposit, you must confirm that your financial institution accepts direct deposits. Verify the transit # (ABA) and your account # with your financial institution.  </p>
+                            <br/>
+                            <p><b style="font-size: 16px">NOTE:</b> Most financial institutions are set up to receive direct deposits. However, some brokerage firms do not. It is your responsibility to make sure your financial institution will accept your direct deposit.  </p>
+                            <br/>
+                            <p>Please complete the form below. Return this form with a copy of your voided check attached. </p>
+                            <br/>
+                            <p><b>(We do not accept deposit forms because they contain different information and will cause a delay in your deposit set-up.) </b></p>
+                            <br/>
+                            <p><b>Please fax this form with a copy of a voided check to 720-465-8363 or email documents@ihcl.com</b></p>
+                            <br/>
+                            <lightning-combobox style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Please select one" options={selectOne} value={DDFSelectOne} onchange={handleDDFSelectOneChange}></lightning-combobox>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Name of Bank" value={DDFNameBank} onchange={handleDDFNameBankChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Transit (ABA) #" value={DDFTransitNum} onchange={handleDDFTransitNumChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Account #" value={DDFAccount} onchange={handleDDFAccountChange}></lightning-input>
+                            <br/>
+                            <p style="font-size: 16px"><b>I hereby authorize Integrity Locums to initiate deposits to my account as indicated and authorized the depository names above to credit the same account. </b></p>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Payee Name" value={DDFPayeeName} onchange={handleDDFPayeeNameChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Signature" value={DDFSignature} onchange={handleDDFSignatureChange}></lightning-input>
+                            <br/>
+                            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 8px; background-color: #f2f2f2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s">
+                                <label for="dateId13" style="display: block; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; color: #696969; margin-bottom: 2px"><p style="display: inline; color: #EA001E">*</p> Date</label>
+                                <input id="dateId13" style="display: block; border: transparent; border-radius: 5px; padding: 5px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; color: #333" type="date" required value={DDFDate} onchange={handleDDFDateChange}></input>
+                            </div>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" required label="Social Security #" value={DDFSocialSecNum} onchange={handleDDFSocialSecNumChange}></lightning-input>
+                            <br/>
+                            <lightning-input style="border: 1px solid #ccc; border-radius: 5px; padding: 8px 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; background-color: #F2F2F2; color: #333; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: border-color 0.3s, box-shadow 0.3s;" type="email" required label="Email Address" value={DDFEmailAdd} onchange={handleDDFEmailAddChange}></lightning-input>
+                            <p style="font-size: 18px"><b></b></p>
+                        </div>
+                        <footer>
+                            <lightning-button label="Submit" variant="brand" type="submit"></lightning-button>
+                            <lightning-button label="Cancel" variant="neutral" onclick={handleDirectDepositFormClose}></lightning-button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+        </template>
+        <!--  -->
+
+
+        <div class="slds-grid slds-wrap slds-gutters">
+            <!-- Buttons in the first line -->
+            <div class="slds-col slds-size_4-of-12">
+                <template if:false={ReleaseAndAuthorization}>
+                    <lightning-button
+                        class="slds-m-around_small slds-button_neutral"
+                        label="Release and Authorization"
+                        onclick={handleReleaseAndAuthorizationOpen}></lightning-button>
+                </template>
+            </div>
+
+            <div class="slds-col slds-size_4-of-12">
+                <template if:false={ProfLiabSuppClaimsMultiForm}>
+                    <lightning-button
+                        class="slds-m-around_small slds-button_neutral"
+                        label="Professional Liability Supplemental Claims Multi Form"
+                        onclick={handleProfLiabSuppClaimsMultiFormOpen}></lightning-button>
+                </template>
+            </div>
+
+            <div class="slds-col slds-size_4-of-12">
+                <template if:false={ProviderServicesAgreement}>
+                    <lightning-button
+                        class="slds-m-around_small slds-button_neutral"
+                        label="Provider Services Agreement"
+                        onclick={handleProviderServicesAgreementOpen}></lightning-button>
+                </template>
+            </div>
+
+
+            <!-- Buttons in the second line -->
+            <div class="slds-col slds-size_4-of-12 slds-m-top_medium">
+                <template if:false={CovidInternalClinicalScreeningAssess}>
+                    <lightning-button
+                        class="slds-m-around_small slds-button_neutral"
+                        label="COVID Internal Clinical Screening"
+                        onclick={handleCOVIDInternalClinicalScreeningAssessmentOpen}></lightning-button>
+                </template>
+            </div>
+
+            <div class="slds-col slds-size_4-of-12 slds-m-top_medium">
+                <template if:false={CoronavirusScreeningForm}>
+                    <lightning-button
+                        class="slds-m-around_small slds-button_neutral"
+                        label="Coronavirus Screening Form"
+                        onclick={handleCoronavirusScreeningFormOpen}></lightning-button>
+                </template>
+            </div>
+
+            <div class="slds-col slds-size_4-of-12 slds-m-top_medium">
+                <template if:false={DirectDepositForm}>
+                    <lightning-button
+                        class="slds-m-around_small slds-button_neutral"
+                        label="Direct Deposit Form"
+                        onclick={handleDirectDepositFormOpen}></lightning-button>
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

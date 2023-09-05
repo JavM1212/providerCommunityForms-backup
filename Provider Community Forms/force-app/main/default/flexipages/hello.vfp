@@ -1,0 +1,114 @@
+<apex:page controller="FormController" renderAs="pdf">
+    <html>
+        <body style="margin: 0px; padding: 0px; background-color: #FEFEFE; font-size: 18px; text-align: left;">
+            <div class="title" style="font-size: 20px; font-weight: bold; margin-bottom: 5px">
+                Coronavirus Screening Form 
+            </div>
+            <p style="text-align: left; margin-top: 30px">
+                In order to comply with current CDC recommendations surrounding COVID-19 exposure in healthcare workers, please answer the following questions:
+            </p>
+            <div style="clear:both" />
+            <div class="input-container" style="margin-bottom: 30px; text-align: left;">
+                <div class="input-elements" style="width: 50%; float: left;">
+                    <p style="display: inline-block; margin: 0 1px; "><b>Last Name:</b></p>
+                    <p style="margin: 0px;">
+                        {!$CurrentPage.parameters.lastname}
+                    </p>
+                </div>
+                <div class="input-elements" style="width: 50%; float: left;">
+                    <p style="display: inline-block; margin: 0 1px; "><b>First Name:</b> </p>
+                    <p style="margin: 0px;">
+                        {!$CurrentPage.parameters.firstname}
+                    </p>
+                </div>
+            </div>
+			<div style="clear:both" />
+            <div class="input-container" style="margin-bottom: 30px; text-align: left;">
+                <div class="input-elements" style="width: 50%; float: left;">
+                    <p style="display: inline-block; margin: 0 1px; "><b>Mobile Number:</b></p>
+                    <p style="margin: 0px;">
+                        {!$CurrentPage.parameters.mobilenumber}
+                    </p>
+                </div>
+                <div class="input-elements" style="width: 50%; float: left;">
+                    <p style="display: inline-block; margin: 0 1px; "><b>Email Address:</b> </p>
+                    <p style="margin: 0px;">
+                        {!$CurrentPage.parameters.emailaddress}
+                    </p>
+                </div>
+            </div>
+            <div style="clear:both" />
+            <div class="input-container" style=" text-align: left;">
+                <div class="input-elements" style="width: 100%; float: left;">
+                    <p style="display: inline; margin: 0 1px; "><b>Have you traveled internationally within that last 30 days?</b></p>
+                    <apex:outputPanel style="{!IF($CurrentPage.parameters.traveledinter == 'no', 'display: none', '')}">
+                        <div>
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">Yes</p>
+                            
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">No</p>
+                        </div>
+                    </apex:outputPanel>	
+                </div>
+                <div style="clear: both" />
+                <div class="input-elements" style="width: 100%; float: left; margin-top: 25px">
+                    <p style="display: inline; margin: 0 1px;"><b>Currently, or in the last 30 days, have you experienced any of the following symptoms:</b></p>
+                    <apex:outputPanel style="{!IF($CurrentPage.parameters.yesorna == 'no', 'display: none', '')}">
+                        <div style="margin-top: 10px">
+							<p style="margin: 0; vertical-align: middle; display: inline;">Fever? {!$CurrentPage.parameters.fever}</p>
+
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">Yes</p>
+                            
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">No</p>
+                        </div>
+                        <div style="margin-top: 10px">
+							<p style="margin: 0; vertical-align: middle; display: inline;">Shortness of Breath? {!$CurrentPage.parameters.shortnessofbreath}</p>
+
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">Yes</p>
+                            
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">No</p>
+                        </div>
+                        <div style="margin-top: 10px">
+							<p style="margin: 0; vertical-align: middle; display: inline;">Cough? {!$CurrentPage.parameters.cough}</p>
+
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">Yes</p>
+                            
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">No</p>
+                        </div>
+                        <div style="margin-top: 10px">
+							<p style="margin: 0; vertical-align: middle; display: inline;">In the last 30 days, have you been in contact with someone who has been diagnosed with COVID-19? {!$CurrentPage.parameters.contactwithcovid}</p>
+
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">Yes</p>
+                            
+                            <apex:image style="vertical-align: middle; margin-right: 5px;" url="/img/checkbox_unchecked.gif" />
+                            <p style="margin: 0; vertical-align: middle; display: inline;">No</p>
+                        </div>
+                    </apex:outputPanel>	
+                </div>
+            </div>
+            <div style="clear:both" />
+            <p style="text-align: left; margin-top: 30px">
+                *If you have answered yes to any of these questions, our credentialing team will follow up with additional questions.
+            </p>
+            <p style="text-align: left; margin-top: 30px">
+				By typing my first and last name below, I acknowledge that I'm required to notify Integrity Locums if any of my answers to this questionnaire change from No to Yes after initial completion. *            
+            </p>
+            <div class="input-container" style="margin-top: 20px; text-align: left;">
+                <div class="input-elements" style="width: 100%; float: left;">
+                    <p style="display: inline-block; margin: 0 1px; vertical-align: middle"><b>First and Last Name:</b></p>
+                    <p style="margin: 0; vertical-align: middle; display: inline;">
+                        {!$CurrentPage.parameters.firstandlastname}
+                    </p>
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>
